@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/',[PDFController::class,'index'])->name('pdf.index');
+Route::post('/store',[PDFController::class,'store'])->name('pdf.store');
+Route::get('/generate/{id}',[PDFController::class,'generatePDF'])->name('pdf.generate');
