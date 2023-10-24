@@ -13,7 +13,7 @@
 
 <div class="row">
     <div class="col-12">
-        <form action="{{route('pdf.store')}}" method="POST">
+        <form action="{{route('pdf.store',[$data['id']])}}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-12">

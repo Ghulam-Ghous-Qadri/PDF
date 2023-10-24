@@ -24,6 +24,7 @@ class PDFController extends Controller
         $data['title'] = ""; 
         $data['name'] = ""; 
         $data['content'] = ""; 
+        $data['id'] = 0; 
 
         if($id>0){
             $dataArr = PdfModel::find($id);
@@ -31,13 +32,14 @@ class PDFController extends Controller
                 $data['title'] = $dataArr->title; 
                 $data['name'] = $dataArr->name; 
                 $data['content'] = $dataArr->content;
+                $data['id'] = $dataArr->id;
             }
         }
 
         return view('pdf.create',compact('data'));
     }
 
-    public function store(Request $rq){
+    public function store(Request $rq,$id=0){
         
         $PdfModel = new PdfModel();
         
@@ -51,10 +53,17 @@ class PDFController extends Controller
         $pdfArr['title'] =  $rq->post('title');
         $pdfArr['content'] =  $rq->post('content');
 
-        $PdfModel->create($pdfArr);
+        $PdfModel->updateOrCreate(['id'=>$id],$pdfArr);
         
         return redirect('/');
 
+    }
+
+    public function delete(PdfModel $id){
+        if($id){
+            $id->delete();
+        }
+        return redirect()->back();
     }
 
     public function sendEmail(){

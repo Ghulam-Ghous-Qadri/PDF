@@ -39,7 +39,7 @@
                             <a href="{{route('pdf.create',[$item->id])}}" class="btn btn-primary btn-sm">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
-                            <a href="{{$item->id}}" class="btn btn-danger btn-sm">
+                            <a href="{{route('pdf.delete',[$item->id])}}" class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </td>

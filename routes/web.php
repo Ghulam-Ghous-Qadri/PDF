@@ -22,7 +22,8 @@ Route::group(['as'=>'pdf.'],function(){
 
     Route::get('/',[PDFController::class,'index'])->name('index');
     Route::get('/create/{id?}',[PDFController::class,'create'])->name('create');
-    Route::post('/store',[PDFController::class,'store'])->name('store');
+    Route::post('/store/{id?}',[PDFController::class,'store'])->name('store');
+    Route::get('/delete/{id}',[PDFController::class,'delete'])->name('delete');
     Route::get('/generate/{id}',[PDFController::class,'generatePDF'])->name('generate');
     Route::get('/email/notification',[PDFController::class,'sendEmail'])->name('email');
 });
