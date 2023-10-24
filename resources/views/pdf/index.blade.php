@@ -22,9 +22,18 @@
                 <td>{{$item->title}}</td>
                 {{-- <td>{{strip_tags($item->content)}}</td> --}}
                 <td>
-                    <a href="{{route('pdf.generate',[$item->id])}}" class="btn btn-primary btn-sm">Download</a>
-                    <a href="{{$item->id}}" class="btn btn-primary btn-sm">Edit</a>
-                    <a href="{{$item->id}}" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="{{route('pdf.generate',[$item->id])}}" class="btn btn-primary btn-sm">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{route('pdf.generate',[$item->id])}}" class="btn btn-primary btn-sm">
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{$item->id}}" class="btn btn-primary btn-sm">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{$item->id}}" class="btn btn-danger btn-sm">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
                 </td>
             </tr>
         @empty
