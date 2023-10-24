@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PdfModel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Notification;
 
 class PDFController extends Controller
 {
@@ -37,6 +38,7 @@ class PDFController extends Controller
     }
 
     public function store(Request $rq){
+        
         $PdfModel = new PdfModel();
         
         $rq->validate([
@@ -53,6 +55,11 @@ class PDFController extends Controller
         
         return redirect('/');
 
+    }
+
+    public function sendEmail(){
+
+    //   pending
     }
 
     public function generatePDF($id){
