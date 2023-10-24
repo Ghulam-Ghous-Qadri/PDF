@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\updf;
+use App\Models\PdfModel;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class PDFController extends Controller
@@ -14,16 +14,30 @@ class PDFController extends Controller
     }
 
     public function index(){
-        $data =  updf::all();
+        $data =  PdfModel::all();
         return view('pdf.index',compact('data'));
     }
 
-    public function create(){
-        return view('pdf.index');
+    public function create($id=0){
+
+        $data['title'] = ""; 
+        $data['name'] = ""; 
+        $data['content'] = ""; 
+
+        if($id>0){
+            $dataArr = PdfModel::find($id);
+            if(!empty($dataArr)){
+                $data['title'] = $dataArr->title; 
+                $data['name'] = $dataArr->name; 
+                $data['content'] = $dataArr->content;
+            }
+        }
+
+        return view('pdf.create',compact('data'));
     }
 
     public function store(Request $rq){
-        $updf = new updf();
+        $PdfModel = new PdfModel();
         
         $rq->validate([
             'pdfName' => 'required',
@@ -35,14 +49,14 @@ class PDFController extends Controller
         $pdfArr['title'] =  $rq->post('title');
         $pdfArr['content'] =  $rq->post('content');
 
-        $updf->create($pdfArr);
+        $PdfModel->create($pdfArr);
         
         return redirect('/');
 
     }
 
     public function generatePDF($id){
-        $data = updf::find($id);
+        $data = PdfModel::find($id);
         if(!empty($data))
         {
             $html = '<h1>'.$data->title.'</h1>';

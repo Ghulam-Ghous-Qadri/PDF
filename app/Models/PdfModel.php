@@ -5,12 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class updf extends Model
+class PdfModel extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'title',
-        'content'
+        'name', 'title', 'content'
     ];
 }

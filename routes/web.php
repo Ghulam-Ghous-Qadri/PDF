@@ -18,6 +18,10 @@ use App\Http\Controllers\PDFController;
 //     return view('welcome');
 // });
 
-Route::get('/',[PDFController::class,'index'])->name('pdf.index');
-Route::post('/store',[PDFController::class,'store'])->name('pdf.store');
-Route::get('/generate/{id}',[PDFController::class,'generatePDF'])->name('pdf.generate');
+Route::group(['as'=>'pdf.'],function(){
+
+    Route::get('/',[PDFController::class,'index'])->name('index');
+    Route::get('/create/{id?}',[PDFController::class,'create'])->name('create');
+    Route::post('/store',[PDFController::class,'store'])->name('store');
+    Route::get('/generate/{id}',[PDFController::class,'generatePDF'])->name('generate');
+});

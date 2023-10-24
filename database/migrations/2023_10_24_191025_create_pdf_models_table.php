@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUpdfsTable extends Migration
+class CreatePdfModelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateUpdfsTable extends Migration
      */
     public function up()
     {
-        Schema::create('updfs', function (Blueprint $table) {
+        Schema::create('pdf_models', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
             $table->string('title')->nullable();
-            $table->string('content')->nullable();
+            $table->longText('content')->nullable();
             $table->softDeletes();
+
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateUpdfsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('updfs');
+        Schema::dropIfExists('pdf_models');
     }
 }
